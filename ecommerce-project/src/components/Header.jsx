@@ -1,4 +1,4 @@
-import { Link } from 'react-router'
+import { NavLink } from 'react-router'
 import './Header.css'
 
 export function Header() {
@@ -6,10 +6,10 @@ export function Header() {
         <>
             <div className="header">
                 <div className="left-section">
-                    <Link to="/" className="header-link">
+                    <NavLink to="/" className="header-NavLink">
                         <img className="logo" src="images/logo-white.png" />
                         <img className="mobile-logo" src="images/mobile-logo-white.png" />
-                    </Link>
+                    </NavLink>
                 </div>
 
                 <div className="middle-section">
@@ -20,14 +20,14 @@ export function Header() {
                 </div>
 
                 <div className="right-section">
-                    <Link className="orders-link header-link" to="/orders">
+                    <NavLink className="orders-NavLink header-NavLink" to="/orders">
                         <span className="orders-text">Orders</span>
-                    </Link>
-                    <Link className="cart-link header-link" to="/checkout">
+                    </NavLink>
+                    <NavLink className="cart-NavLink header-NavLink" to="/checkout">
                         <img className="cart-icon" src="images/icons/cart-icon.png" />
                         <div className="cart-quantity">3</div>
                         <div className="cart-text">Cart</div>
-                    </Link>
+                    </NavLink>
                 </div>
             </div>
         </>
