@@ -4,6 +4,8 @@ import './TrackingPage.css'
 export function TrackingPage() {
     return (
         <>
+            <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
             <Header />
 
             <div className="tracking-page">
