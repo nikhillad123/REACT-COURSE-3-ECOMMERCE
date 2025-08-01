@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { Header } from '../components/Header'
 import './HomePage.css'
 
-export function HomePage() {
+export function HomePage({ cart }) {
     /*
     //Asynchronous code = code that does not finish right away.
     fetch('http://localhost:3000/api/products').then((response) => {
@@ -15,18 +15,12 @@ export function HomePage() {
 
     // with the help of Axios, useState and useEffect we now take data from the backend instead of products.js file.
     const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState([]);
-
+    
     // axios = cleaner way to request to the backend.
     useEffect(() => {
         axios.get('/api/products')
             .then((response) => {
                 setProducts(response.data);
-            });
-
-         axios.get('/api/cart-items')
-            .then((response) => {
-                setCart(response.data);
             });
     }, []);
 
