@@ -1,6 +1,6 @@
 import axios from 'axios'
+import { useEffect, useState } from 'react'
 import { Header } from '../components/Header'
-import { products } from '../../starting-code/data/products'
 import './HomePage.css'
 
 export function HomePage() {
@@ -13,10 +13,16 @@ export function HomePage() {
     })
     */
 
+    // with the help of Axios, useState and useEffect we now take data from the backend instead of products.js file.
+    const [products, setProducts] = useState([]);
+
     // axios = cleaner way to request to the backend.
-    axios.get('http://localhost:3000/api/products').then((response) => {
-        console.log(response.data);
-    });
+    useEffect(() => {
+        axios.get('http://localhost:3000/api/products')
+            .then((response) => {
+                setProducts(response.data);
+        });
+    }, []);
         
     return (
         <>
