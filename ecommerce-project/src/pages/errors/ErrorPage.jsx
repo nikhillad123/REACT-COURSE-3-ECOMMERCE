@@ -1,7 +1,7 @@
-import { Header } from '../components/Header';
+import { Header } from '../../components/Header';
 import './ErrorPage.css';
 
-export function ErrorPage() {
+export function ErrorPage({ cart }) {
   return (
     <>
       {/* You can choose whatever title and favicon you want. */}
@@ -10,7 +10,7 @@ export function ErrorPage() {
 
       {/* Remember to add the <Header> so it looks like it's
       on the same website. */}
-      <Header />
+      <Header cart={cart} />
 
       {/* You can style this message however you want. */}
       <div className="not-found-message">
