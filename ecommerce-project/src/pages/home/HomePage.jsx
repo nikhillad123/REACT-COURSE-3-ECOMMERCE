@@ -18,11 +18,24 @@ export function HomePage({ cart }) {
     const [products, setProducts] = useState([]);
     
     // axios = cleaner way to request to the backend.
+    /*
     useEffect(() => {
         axios.get('/api/products')
             .then((response) => {
                 setProducts(response.data);
             });
+    }, []);
+    */
+
+    // async and await
+    // we can also use fetchAppData instead of getHomeData. both are the same thing.
+    useEffect(() => {
+        const getHomeData = async () => {
+            const response = await axios.get('/api/products');
+            setProducts(response.data);
+        };
+
+        getHomeData();
     }, []);
 
     return (
