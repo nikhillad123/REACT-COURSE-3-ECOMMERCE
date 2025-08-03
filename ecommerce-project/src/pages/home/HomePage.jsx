@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router'
 import { Header } from '../../components/Header'
 import { ProductsGrid } from './ProductsGrid'
 import './HomePage.css'
@@ -16,6 +17,8 @@ export function HomePage({ cart, loadCart }) {
 
     // with the help of Axios, useState and useEffect we now take data from the backend instead of products.js file.
     const [products, setProducts] = useState([]);
+    const [searchParams] = useSearchParams();
+    const search = searchParams.get('search');
     
     // axios = cleaner way to request to the backend.
     /*
@@ -31,12 +34,14 @@ export function HomePage({ cart, loadCart }) {
     // we can also use fetchAppData instead of getHomeData. both are the same thing.
     useEffect(() => {
         const getHomeData = async () => {
-            const response = await axios.get('/api/products');
+            const urlPath = search ? `/api/products?search=${search}` : '/api/products';
+
+            const response = await axios.get(urlPath);
             setProducts(response.data);
         };
 
         getHomeData();
-    }, []);
+    }, [search]);
 
     return (
         <>
