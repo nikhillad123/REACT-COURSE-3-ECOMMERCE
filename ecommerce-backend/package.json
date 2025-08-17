@@ -16,11 +16,12 @@
   "description": "",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
     "express": "^4.21.2",
-    "mysql2": "^3.14.1",
+    "mysql2": "^3.14.3",
     "patch-package": "8.0.0",
     "pg": "^8.16.0",
-    "sequelize": "^6.6.5",
+    "sequelize": "^6.37.7",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
