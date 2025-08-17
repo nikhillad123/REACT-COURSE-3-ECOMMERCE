@@ -1,7 +1,6 @@
 import { Sequelize } from 'sequelize';
-import sqlJsAsSqlite3 from 'sql.js-as-sqlite3';
-import fs from 'fs';
 
+// Check if running on AWS RDS or similar
 const isUsingRDS = process.env.RDS_HOSTNAME && process.env.RDS_USERNAME && process.env.RDS_PASSWORD;
 const dbType = process.env.DB_TYPE || 'mysql';
 const defaultPorts = {
@@ -13,6 +12,7 @@ const defaultPort = defaultPorts[dbType];
 export let sequelize;
 
 if (isUsingRDS) {
+  // If you deploy to AWS RDS (MySQL/Postgres)
   sequelize = new Sequelize({
     database: process.env.RDS_DB_NAME,
     username: process.env.RDS_USERNAME,
@@ -23,26 +23,10 @@ if (isUsingRDS) {
     logging: false
   });
 } else {
+  // Default to SQLite (local development or small deployments)
   sequelize = new Sequelize({
     dialect: 'sqlite',
-    dialectModule: sqlJsAsSqlite3,
+    storage: 'database.sqlite', // persistent file in project root
     logging: false
   });
-
-  // Save database to file after write operations.
-  sequelize.addHook('afterCreate', saveDatabaseToFile);
-  sequelize.addHook('afterDestroy', saveDatabaseToFile);
-  sequelize.addHook('afterUpdate', saveDatabaseToFile);
-  sequelize.addHook('afterSave', saveDatabaseToFile);
-  sequelize.addHook('afterUpsert', saveDatabaseToFile);
-  sequelize.addHook('afterBulkCreate', saveDatabaseToFile);
-  sequelize.addHook('afterBulkDestroy', saveDatabaseToFile);
-  sequelize.addHook('afterBulkUpdate', saveDatabaseToFile);
-}
-
-export async function saveDatabaseToFile() {
-  const dbInstance = await sequelize.connectionManager.getConnection();
-  const binaryArray = dbInstance.database.export();
-  const buffer = Buffer.from(binaryArray);
-  fs.writeFileSync('database.sqlite', buffer);
 }
