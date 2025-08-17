@@ -1,17 +1,23 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig, loadEnv } from 'vite';
+import react from '@vitejs/plugin-react';
 
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3000'
+export default defineConfig(({ mode }) => {
+  // Load the environment variables from .env files
+  const env = loadEnv(mode, process.cwd(), '');
+
+  return {
+    plugins: [react()],
+    server: {
+      proxy: {
+        '/api': {
+          // Use process.env directly
+          target: env.VITE_BACKEND_URL,
+        },
+        '/images': {
+          // Use process.env directly
+          target: env.VITE_BACKEND_URL,
+        },
       },
-      '/images': {
-        target: 'http://localhost:3000'
-      }
     },
-  }
-})
+  };
+});
