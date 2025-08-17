@@ -308,9 +308,7 @@ This project demonstrates real-world features like product browsing, cart manage
 ## 🙏 Acknowledgments  
 
 This project was created as part of a **React learning journey**, with the goal of building a **practical full-stack e-commerce app** from scratch.  
-Special thanks to the open-source community for tools, libraries, and inspiration.  
 
 ---
 
 ## 🎉 Thank you for checking out **REACT-COURSE-3-ECOMMERCE**!  
-If you found this project interesting, don’t forget to ⭐ the repo.  
