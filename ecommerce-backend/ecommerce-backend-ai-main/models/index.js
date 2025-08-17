@@ -1,48 +1,28 @@
+// config/index.js
 import { Sequelize } from 'sequelize';
-import sqlJsAsSqlite3 from 'sql.js-as-sqlite3';
-import fs from 'fs';
+import 'dotenv/config';
 
-const isUsingRDS = process.env.RDS_HOSTNAME && process.env.RDS_USERNAME && process.env.RDS_PASSWORD;
+// Decide DB type (default MySQL, but can be PostgreSQL if needed later)
 const dbType = process.env.DB_TYPE || 'mysql';
-const defaultPorts = {
-  mysql: 3306,
-  postgres: 5432,
-};
-const defaultPort = defaultPorts[dbType];
 
-export let sequelize;
-
-if (isUsingRDS) {
-  sequelize = new Sequelize({
-    database: process.env.RDS_DB_NAME,
-    username: process.env.RDS_USERNAME,
-    password: process.env.RDS_PASSWORD,
-    host: process.env.RDS_HOSTNAME,
-    port: process.env.RDS_PORT || defaultPort,
+export const sequelize = new Sequelize(
+  process.env.DB_NAME,       // database name
+  process.env.DB_USER,       // username
+  process.env.DB_PASSWORD,   // password
+  {
+    host: process.env.DB_HOST || 'localhost',
+    port: process.env.DB_PORT || (dbType === 'postgres' ? 5432 : 3306),
     dialect: dbType,
-    logging: false
-  });
-} else {
-  sequelize = new Sequelize({
-    dialect: 'sqlite',
-    dialectModule: sqlJsAsSqlite3,
-    logging: false
-  });
+    logging: false,           // disable SQL logging in console
+  }
+);
 
-  // Save database to file after write operations.
-  sequelize.addHook('afterCreate', saveDatabaseToFile);
-  sequelize.addHook('afterDestroy', saveDatabaseToFile);
-  sequelize.addHook('afterUpdate', saveDatabaseToFile);
-  sequelize.addHook('afterSave', saveDatabaseToFile);
-  sequelize.addHook('afterUpsert', saveDatabaseToFile);
-  sequelize.addHook('afterBulkCreate', saveDatabaseToFile);
-  sequelize.addHook('afterBulkDestroy', saveDatabaseToFile);
-  sequelize.addHook('afterBulkUpdate', saveDatabaseToFile);
-}
-
-export async function saveDatabaseToFile() {
-  const dbInstance = await sequelize.connectionManager.getConnection();
-  const binaryArray = dbInstance.database.export();
-  const buffer = Buffer.from(binaryArray);
-  fs.writeFileSync('database.sqlite', buffer);
-}
+// Simple connection check (optional, can remove in production)
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log('✅ Database connection established successfully.');
+  } catch (error) {
+    console.error('❌ Database connection failed:', error);
+  }
+})();
