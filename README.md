@@ -291,10 +291,10 @@ This project demonstrates real-world features like product browsing, cart manage
 
 | Page | Screenshot |  
 |------|------------|  
-| Home | (Add screenshot here) |  
-| Checkout | (Add screenshot here) |  
-| Orders | (Add screenshot here) |  
-| Tracking | (Add screenshot here) |  
+| Home | <img width="1920" height="1080" alt="homepage" src="https://github.com/user-attachments/assets/25924a37-08af-467f-bfcf-a10f1b7d7496" /> |  
+| Checkout |<img width="1920" height="1080" alt="checkoutpage" src="https://github.com/user-attachments/assets/1eaea8da-4138-469f-bfc5-c33b9ce3daaf" /> |  
+| Orders | <img width="1920" height="1080" alt="orderpage" src="https://github.com/user-attachments/assets/91a905c8-5b71-45c4-9fb1-344dc0d53019" /> |  
+| Tracking | <img width="1920" height="1080" alt="trackingpage" src="https://github.com/user-attachments/assets/14da15eb-3710-4c73-bd0c-59be03cfbbf8" /> |  
 
 ---
 
