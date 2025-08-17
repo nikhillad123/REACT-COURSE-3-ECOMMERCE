@@ -14,8 +14,9 @@ This project demonstrates real-world features like product browsing, cart manage
 - 🧪 **Vitest + React Testing Library** – Unit & integration testing  
 
 ### Backend  
+### Backend  
 - 🟢 **Node.js + Express** – RESTful API server  
-- 📂 **JSON File Database** – Simple mock data storage (products, cart, orders, delivery options)  
+- 🗄️ **MySQL** – Relational database for storing products, cart, orders, and delivery options  
 - 🌐 **REST Endpoints** – Products, cart, orders, payment summaries, delivery options  
 
 ---
