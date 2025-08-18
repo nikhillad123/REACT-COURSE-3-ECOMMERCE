@@ -1,4 +1,4 @@
-# 🛒 REACT-COURSE-3-ECOMMERCE  
+# 🛒 ECOMMERCE PROJECT
 
 A **full-stack e-commerce application** built with **React (Vite)** on the frontend and a lightweight **Node.js + Express** backend powered by JSON data.  
 This project demonstrates real-world features like product browsing, cart management, checkout flow, order tracking, and testing – making it a complete learning and showcase project.  
