@@ -289,7 +289,7 @@ This project demonstrates real-world features like product browsing, cart manage
 
 ## 📽️ Demo Video
 
-[![Watch the video](https://img.youtube.com/vi/VIDEO_ID_HERE/0.jpg)](VIDEO_LINK_HERE)
+https://github.com/user-attachments/assets/0fdbdea1-b888-4a62-8935-d5ee000ae961
 
 ---
 
